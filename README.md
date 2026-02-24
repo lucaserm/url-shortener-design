@@ -1,5 +1,5 @@
 # URL Shortener — System Design
 
-Design document pro Desafio #2 do FirstCommit.
+Design document to #2 FirstCommit challenge.
 
-Autor: Lucas Macedo`
+Author: Lucas Macedo
