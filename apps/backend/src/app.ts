@@ -8,9 +8,7 @@ import { requestCounterPlugin } from "@/http/plugins/request-counter-plugin";
 import { shortenRoutes } from "@/http/routes/shorten/routes";
 import { utilitiesRoutes } from "@/http/routes/utilities/routes";
 
-export const app = new Elysia();
-
-app
+export const app = new Elysia()
   /// Plugins
   .onError(errorHandlerPlugin())
   .onAfterResponse(requestCounterPlugin)

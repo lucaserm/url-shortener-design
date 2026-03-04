@@ -1,36 +1,36 @@
 import Elysia from "elysia";
 import z from "zod";
 
-import { db } from "@/db";
-import { generateShortCode } from "@/utils/generate-short-code";
+import { makeCreateShortenUseCase } from "@/use-cases/_factories/make-create-shorten-use-case";
+
+const shortenUrlBody = z.object({
+  url: z.url(),
+});
+
+const shortenUrlResponse = z.object({
+  short_url: z.string(),
+  short_code: z.string(),
+});
 
 export const shortenUrlRoute = new Elysia().post(
   "/shorten",
   async ({ status, body }) => {
     const { url } = body;
 
-    const short_code = generateShortCode();
+    const useCase = makeCreateShortenUseCase();
+    const { short_code, short_url } = await useCase.execute({ url });
 
-    await db.execute(
-      `INSERT INTO urls (short_code, long_url, created_at)
-             VALUES (?, ?, ?)`,
-      [short_code, url, new Date()],
-      { prepare: true },
-    );
-
-    const response = {
-      short_url: `http://localhost:3000/${short_code}`,
-      short_code,
-    };
-
-    return status(201, response);
+    return status(201, { short_code, short_url });
   },
   {
-    body: z.object({
-      url: z.url(),
-    }),
+    body: shortenUrlBody,
     response: {
-      201: z.object({ short_url: z.string(), short_code: z.string() }),
+      201: shortenUrlResponse,
+    },
+    detail: {
+      tags: ["Shorten"],
+      summary: "Shorten a URL",
+      description: "Receive a URL and return the shortened version of it",
     },
   },
 );

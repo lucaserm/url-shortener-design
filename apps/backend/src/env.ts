@@ -4,6 +4,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).catch("development"),
   // CORS origin for the frontend application
   WEB_URL: z.url(),
+  API_URL: z.url().catch("http://localhost:3000"),
   PORT: z.coerce.number().catch(3000),
   SHORT_SECRET: z
     .string()
