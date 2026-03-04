@@ -1,0 +1,25 @@
+{
+  "name": "url-shortener-design",
+  "private": true,
+  "scripts": {
+    "ts:check": "turbo run ts:check",
+    "ts": "turbo run ts",
+    "test": "turbo run test",
+    "clear": "turbo run clear",
+    "reset": "turbo run reset"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.6",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "pnpm": ">=10",
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@10.27.0",
+  "dependencies": {
+    "@elysiajs/openapi": "^1.4.14",
+    "chalk": "^5.6.2",
+    "prom-client": "^15.1.3"
+  }
+}
