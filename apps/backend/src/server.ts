@@ -1,6 +1,4 @@
 import { app } from "./app";
-import { errorHandlerPlugin } from "./http/plugins/error-handler-plugin";
-import { shortenRoutes } from "./http/routes/shorten/routes";
 import { db } from "./db";
 import { runMigrations } from "./db/migrations";
 import { env } from "./env";

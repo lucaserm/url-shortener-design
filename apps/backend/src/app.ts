@@ -17,5 +17,5 @@ export const app = new Elysia()
 
   /// Routes
   .get("/", () => ({ status: "Ok" }))
-  .use(utilitiesRoutes)
-  .use(shortenRoutes);
+  .use(shortenRoutes)
+  .use(utilitiesRoutes);

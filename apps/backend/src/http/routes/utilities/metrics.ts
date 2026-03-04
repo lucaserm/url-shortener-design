@@ -6,9 +6,9 @@ export const metricsRoute = new Elysia().get(
   () => client.register.metrics(),
   {
     detail: {
-      tags: ["Metrics"],
-      summary: "Métricas do Prometheus",
-      description: "Lista as métricas da aplicação para uso no Prometheus",
+      tags: ["Metrics", "Utilities"],
+      summary: "Prometheus Metrics",
+      description: "Lists all Prometheus metrics for the application",
     },
   },
 );
