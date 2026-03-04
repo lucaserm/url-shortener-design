@@ -1,3 +1,4 @@
+import { GoneError } from "@/errors/http/gone-error";
 import { NotFoundError } from "@/errors/http/not-found-error";
 import type { ShortenRepository } from "@/repositories/shorten-repository";
 import type { Shorten } from "@/schemas/shorten";
@@ -20,6 +21,10 @@ export class GetShortenByShortCodeUseCase {
 
     if (!shorten) {
       throw new NotFoundError("Shorten not found");
+    }
+
+    if (!shorten.expires_at || shorten.expires_at < new Date()) {
+      throw new GoneError("Shorten has expired");
     }
 
     return {

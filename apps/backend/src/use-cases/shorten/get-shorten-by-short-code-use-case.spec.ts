@@ -6,6 +6,7 @@ import { NotFoundError } from "@/errors/http/not-found-error";
 import { InMemoryShortenRepository } from "@/repositories/in-memory/in-memory-shorten-repositoy";
 
 import { GetShortenByShortCodeUseCase } from "./get-shorten-by-short-code-use-case";
+import { GoneError } from "@/errors/http/gone-error";
 
 let shortenRepository: InMemoryShortenRepository;
 let sut: GetShortenByShortCodeUseCase;
@@ -34,5 +35,19 @@ describe("use case: get shorten by short code", () => {
         shortCode: faker.string.alphanumeric(6),
       }),
     ).rejects.toThrow(NotFoundError);
+  });
+
+  it("should throw an error if the shorten was expired", async () => {
+    const shorten = makeShorten({
+      expires_at: new Date(Date.now() - 1000), // expired 1 second ago
+    });
+
+    shortenRepository.items.push(shorten);
+
+    expect(
+      sut.execute({
+        shortCode: shorten.short_code,
+      }),
+    ).rejects.toThrow(GoneError);
   });
 });
