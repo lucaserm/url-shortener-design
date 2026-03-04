@@ -1,0 +1,26 @@
+info:
+  name: Generate Short Code
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{BASE_URL}}/shorten"
+  body:
+    type: json
+    data: |-
+      {
+        "url": "https://omeninotech.com"
+      }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: BASE_URL
+      value: http://0.0.0.0:3000
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
