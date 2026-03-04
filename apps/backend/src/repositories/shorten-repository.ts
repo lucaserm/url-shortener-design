@@ -1,4 +1,4 @@
-import type { Shorten } from "@/schmeas/shorten";
+import type { Shorten } from "@/schemas/shorten";
 
 export interface CreateShortenProps {
   short_code: string;

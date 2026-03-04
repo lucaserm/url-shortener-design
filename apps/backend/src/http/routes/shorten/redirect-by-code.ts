@@ -23,9 +23,6 @@ export const redirectByCodeRoute = new Elysia().get(
   },
   {
     params: redirectByCodeParams,
-    response: {
-      301: z.string(),
-    },
     detail: {
       tags: ["Shorten"],
       summary: "Redirect by short code",
