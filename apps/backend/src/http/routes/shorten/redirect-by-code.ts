@@ -10,14 +10,10 @@ const redirectByCodeParams = z.object({
 export const redirectByCodeRoute = new Elysia().get(
   "/:short_code",
   async ({ params, redirect }) => {
-    console.log("Received request to redirect with params:", params);
     const { short_code } = params;
 
-    console.log("Looking up short code:", short_code);
     const useCase = makeGetShortenByShortCodeUseCase();
     const { shorten } = await useCase.execute({ shortCode: short_code });
-
-    console.log("Found shorten:", shorten);
 
     return redirect(shorten.long_url, 301);
   },

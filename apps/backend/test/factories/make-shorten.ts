@@ -8,6 +8,8 @@ export function makeShorten(override?: Partial<Shorten>): Shorten {
     long_url: faker.internet.url(),
     created_at: faker.date.past(),
     expires_at: faker.date.future(),
+    click_count: 0,
+    last_accessed_at: null,
     ...override,
   };
 }
