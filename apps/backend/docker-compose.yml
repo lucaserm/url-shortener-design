@@ -15,5 +15,12 @@ services:
       - cassandra_data:/var/lib/cassandra
     restart: unless-stopped
 
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
 volumes:
   cassandra_data:

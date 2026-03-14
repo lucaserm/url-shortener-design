@@ -15,6 +15,9 @@ const envSchema = z.object({
       "SHORT_SECRET must be 32 characters long",
     ),
   CASSANDRA_HOST: z.string().default("127.0.0.1"),
+  REDIS_URL: z.string().default("redis://127.0.0.1:6379"),
+  RATE_LIMIT_WINDOW_SECONDS: z.coerce.number().default(3600),
+  RATE_LIMIT_MAX_REQUESTS: z.coerce.number().default(100),
   RUN_MIGRATIONS: z
     .string()
     .refine((val) => ["true", "false"].includes(val.toLowerCase()), {
