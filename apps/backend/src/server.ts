@@ -5,7 +5,7 @@ import { env } from "./env";
 
 await db
   .connect()
-  .catch(() => console.log("Failed to connect to the database"));
+  .catch((err) => console.log("Failed to connect to the database", err));
 
 if (env.RUN_MIGRATIONS) {
   await runMigrations();
